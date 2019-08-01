@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyCx49_GrumijoZtQ0kB1DKjuQnWG_vJyPw",
+    authDomain: "camsa-vpro.firebaseapp.com",
+    databaseURL: "https://camsa-vpro.firebaseio.com",
+    projectId: "camsa-vpro",
+    storageBucket: "camsa-vpro.appspot.com",
+    messagingSenderId: "539549206543",
+    appId: "1:539549206543:web:e242ac10215e52e2"
+  }
 };
 
 /*

@@ -1,0 +1,23 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+agm-map {
+    height: 400px;
+   }
+   .mom {
+    width: 100%; 
+    display: table;
+}
+.child {
+    display: table-cell;
+}
+.childinner {
+    margin-left: 25px;
+    min-height: 40px;
+    margin-bottom: 25px;
+    margin-top: 12px;
+}
+.child:first-child .childinner {
+    margin-left: 0;
+}
+.lista{
+  margin-top: 25px;
+}
