@@ -28,6 +28,21 @@ export class MapaComponent implements OnInit {
     private ngZone: NgZone) {
     this.items = db.collection('Usuarios', ref => ref.where('Estatus', '==', 'Activo')).valueChanges();
   }
+  display: boolean = false;
+  display2: boolean = false;
+  display3: boolean = false;
+
+
+  showDialog() {
+      this.display = true;
+  }
+  showDialog2() {
+    this.display2 = true;
+}
+clickedMarker() {
+  //alert(`Latitud: ${this.latitude}, Longitud:${this.longitude}`);
+  this.display3 = true;
+}
 
   ngOnInit() {
      //load Places Autocomplete
