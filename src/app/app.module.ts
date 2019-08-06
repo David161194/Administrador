@@ -13,6 +13,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import {DialogModule} from 'primeng/dialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
+import { FormsModule } from '@angular/forms';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {ButtonModule} from 'primeng/button';
     HomeComponent
   ],
   imports: [
+    DropdownModule,
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({

@@ -1,6 +1,7 @@
 <h1> {{texto}}</h1>
 <div class="mom">
   <div class="child">
+    <!--Chat grupal-->
     <p-dialog header="Chat Grupal" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
     [maximizable]="true" [baseZIndex]="10000">
 <p>Mensajes... 
@@ -22,6 +23,7 @@
   (dragEnd)="markerDragEnd($event)" (markerClick)="clickedMarker() "></agm-marker>
 </agm-map>
 <div class="lista">
+  <!--Chat uno a uno-->
     <h3>Verificadores activos</h3>
     <p-dialog header="Chat" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '450px'}" [minY]="70" 
     [maximizable]="true" [baseZIndex]="10000">
@@ -31,17 +33,50 @@
         <button type="button" pButton icon="pi pi-times" (click)="display2=false" label="Cerrar" class="ui-button-rounded ui-button-danger"></button>
     </p-footer>
 </p-dialog>
-<p-dialog header="Crear tarea" [(visible)]="display3" [modal]="true" [responsive]="true" [style]="{width: '450px'}" [minY]="70" 
+<!--Modal creación de tareas-->
+<p-dialog header="Crear tarea" [(visible)]="display3" [modal]="true" [responsive]="true" [style]="{width: '500px'}" [minY]="70" 
 [maximizable]="true" [baseZIndex]="10000">
-<p>{{this.latitude}}
-</p>
+<div>
+<div class="col1">
+  <p>Latitud</p>
+<p>{{this.latitude}}</p>
+</div>
+<div class="col2">
+    <p>Longitud</p>
+  <p>{{this.longitude}}</p>
+  </div>
+</div>
+<div>
+<div class=col1>
+    <p>Dirección</p>
+  <p>{{this.address}}</p>
+  </div>
+  </div>
+  <div>
+      <div class=col1>
+          <form (submit)='onSubmit()'>
+            Cliente:<br>
+            <input type="text" name="cliente"  [(ngModel)]="Cliente" required><br>
+            Telefono:<br> 
+            <input type="tel" name="Telefono" pattern="[0-9]{10}"  [(ngModel)]="Telefono" required> <span> Formato: 5611247753</span> <br>
+            Digital:<br>
+            <input type="text" name="Digital"  [(ngModel)]="Digital" required><br>
+            Estatus:<br>
+            <input type="text" name="Estatus" [(ngModel)]="Estatus" required><br>
+            Id:<br>
+            <input type="text" name="Id"  [(ngModel)]="Id" required><br><br>
+            <p-dropdown name="name" [options]="usuario" [(ngModel)]="selectedUser" placeholder="Asignación de tarea" optionLabel="name" [showClear]="true"></p-dropdown>
+            <br><br>
+            <input type="submit">
+          </form>
+        </div>
+  </div>      
 <p-footer>
     <button type="button" pButton icon="pi pi-times" (click)="display3=false" label="Cerrar" class="ui-button-rounded ui-button-danger"></button>
 </p-footer>
-
 </p-dialog>
   <ul class="list-group"> 
-  <li class="list-group-item" (click)="showDialog2()" *ngFor="let usuario of items | async">
+  <li class="list-group-item" (click)="showDialog2()" *ngFor="let usuario of usuarios | async">
     {{usuario.id}}-{{usuario.Nombre}}  
   </li>
 </ul>
