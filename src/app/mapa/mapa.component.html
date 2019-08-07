@@ -65,7 +65,7 @@
             <input type="text" name="Estatus" [(ngModel)]="Estatus" required><br>
             Id:<br>
             <input type="text" name="Id"  [(ngModel)]="Id" required><br><br>
-            <p-dropdown name="name" [options]="usuario" [(ngModel)]="selectedUser" placeholder="Asignación de tarea" optionLabel="name" [showClear]="true"></p-dropdown>
+            <p-dropdown name="name" [options]="usuario" [(ngModel)]="user" placeholder="Asignar"  editable="true"></p-dropdown>
             <br><br>
             <input type="submit">
           </form>

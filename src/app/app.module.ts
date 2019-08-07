@@ -15,18 +15,22 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
+import { TareasComponent } from './tareas/tareas.component';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     MapaComponent,
-    HomeComponent
+    HomeComponent,
+    TareasComponent
   ],
   imports: [
     DropdownModule,
     BrowserModule,
     FormsModule,
+    InputTextModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({

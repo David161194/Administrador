@@ -3,12 +3,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { MapsAPILoader, MouseEvent } from '@agm/core';
 import { firestore } from 'firebase/app';
+import { SelectItem } from 'primeng/components/common/selectitem';
 declare var google: any;
 
 
-interface Users {
-  name: string;
-}
 
 @Component({
   selector: 'app-mapa',
@@ -28,9 +26,9 @@ export class MapaComponent implements OnInit {
   Cliente: String;
   address: string;
   private geoCoder;
-  usuario: Users[];
-  selectedUser: Users;
-
+  user: string;
+  usuario: SelectItem[];
+  Asignada: number;
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
@@ -40,9 +38,9 @@ export class MapaComponent implements OnInit {
     private ngZone: NgZone) {
     this.usuarios = db.collection('Usuarios', ref => ref.where('Estatus', '==', 'Activo')).valueChanges();
     this.usuario = [
-      {name: '169861'},
-      {name: '215582'},
-      {name: '554844'},
+      {label: '169861', value: '169861'},
+      {label: '215582', value: '215582'},
+      {label: '554844', value: '554844'},
   ];
   }
   display: boolean = false;
@@ -58,6 +56,11 @@ clickedMarker() {
   this.display3 = true;
 }
 onSubmit(){
+  if (this.user = null){
+    this.Asignada = 0
+  }else{
+   this.Asignada = 1
+  }
   this.db.collection("Tareas").doc(this.Id).set({
    Direccion: this.address,
    Estatus: this.Estatus,
@@ -66,11 +69,12 @@ onSubmit(){
    Telefono: this.Telefono,
    Cliente: this.Cliente,
    id: this.Id,
+   Asignada: this.Asignada
    });
-   this.db.collection("Usuarios").doc(this.selectedUser.name).
+   this.db.collection("Usuarios").doc(this.user).
    collection("Tareas").doc(this.Id).set({
    Fecha_Asignación: new Date().getTime(),
-   id: this.selectedUser.name
+   id: this.user,
    });
    this.display3 = false;
 }

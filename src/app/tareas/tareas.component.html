@@ -1,0 +1,43 @@
+<h2>Tareas sin asignar</h2>
+<ul class="list-group"> 
+  <li class="list-group-item" (click)="showDialog()" *ngFor="let tarea of tareas | async">
+    {{tarea.Cliente}} - {{tarea.Digital}}  
+  </li>
+</ul>
+<p-dialog header="Asignar tarea" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+    [maximizable]="true" [baseZIndex]="10000">
+    <div>
+      <div class="col1">
+    <p-dropdown name="name" [(ngModel)]="user" placeholder="Asignación de tarea"  editable="true"></p-dropdown>
+      </div>
+      <div class="col2">
+     Id: <br>
+     <input type="text" pInputText [(ngModel)]="Id"/>
+      </div>
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="asignar()" label="Asignar" class="ui-button-rounded ui-button-success"></button>
+        <button type="button" pButton icon="pi pi-times" (click)="display=false" label="Cancelar" class="ui-button-rounded ui-button-danger"></button>
+    </p-footer>
+</p-dialog>
+<br>
+<h2>Tareas sin asignar</h2>
+<ul class="list-group"> 
+  <li class="list-group-item" *ngFor="let tareas of tareasAsig | async">
+    {{tareas.Cliente}} - {{tareas.Digital}}  
+  </li>
+</ul>
+<br>
+<h2>Tareas terminadas</h2>
+<ul class="list-group"> 
+  <li class="list-group-item" *ngFor="let tareas of tareasTer | async">
+    {{tareas.Cliente}} - {{tareas.Digital}}  
+  </li>
+</ul>
+<br>
+<h2>Tareas borradas</h2>
+<ul class="list-group"> 
+  <li class="list-group-item" *ngFor="let tareas of tareasEli | async">
+    {{tareas.Cliente}} - {{tareas.Digital}}  
+  </li>
+</ul>
