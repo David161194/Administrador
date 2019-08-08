@@ -25,6 +25,8 @@ export class MapaComponent implements OnInit {
   Telefono: String;
   Cliente: String;
   address: string;
+  mensaje: string;
+  supervisor: string ='Supervisor';
   private geoCoder;
   user: string;
   usuario: SelectItem[];
@@ -33,10 +35,13 @@ export class MapaComponent implements OnInit {
   public searchElementRef: ElementRef;
 
   usuarios: Observable<any[]>;
+  messages: Observable<any[]>;
   constructor(public db: AngularFirestore, 
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {
     this.usuarios = db.collection('Usuarios', ref => ref.where('Estatus', '==', 'Activo')).valueChanges();
+    this.messages = db.collection('Chats').doc('mensajesGrupal').
+    collection('Grupal', ref => ref.orderBy('Hora')).valueChanges();
     this.usuario = [
       {label: '169861', value: '169861'},
       {label: '215582', value: '215582'},
@@ -54,6 +59,14 @@ export class MapaComponent implements OnInit {
 }
 clickedMarker() {
   this.display3 = true;
+}
+enviar(){
+  this.db.collection("Chats").doc('mensajesGrupal').collection('Grupal').add({
+    Hora: new Date().getTime(),
+    message: this.mensaje,
+    name: this.supervisor
+    });
+    this.mensaje = '';
 }
 onSubmit(){
   if (this.user = null){

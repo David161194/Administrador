@@ -24,7 +24,7 @@ import {InputTextModule} from 'primeng/inputtext';
     NavComponent,
     MapaComponent,
     HomeComponent,
-    TareasComponent
+    TareasComponent,
   ],
   imports: [
     DropdownModule,

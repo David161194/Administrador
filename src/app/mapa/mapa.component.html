@@ -1,17 +1,31 @@
+<div class="float-right">
+  <button type="button" (click)="showDialog()" pButton label="Chat Grupal" class="ui-button-rounded"></button>
+</div>
 <h1> {{texto}}</h1>
 <div class="mom">
   <div class="child">
     <!--Chat grupal-->
-    <p-dialog header="Chat Grupal" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70" 
+    <p-dialog header="Chat Grupal" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '700px', minWidth: '200px'}" [minY]="70" 
     [maximizable]="true" [baseZIndex]="10000">
-<p>Mensajes... 
-</p>
+    <ul class="list-group list-group-flush"> 
+      <li class="list-group-item list-group-item-dark" *ngFor="let message of messages | async">
+       <font color="#4682B4">{{message.name}} </font> 
+        <br>
+        {{message.message}} 
+      </li>
+    </ul>
+   <div class="lista">
+    <div class="col1">
+     <input type="text" name="mensaje" pInputText autocorrect="on" [(ngModel)]="mensaje" size="45" placeholder="Escribe un mensaje">
+    </div>
+    <div class="col2">
+        <p-button (click)="enviar()" label="Enviar"></p-button>
+      </div>
+   </div>
     <p-footer>
         <button type="button" pButton icon="pi pi-times" (click)="display=false" label="Cerrar" class="ui-button-rounded ui-button-danger"></button>
     </p-footer>
 </p-dialog>
-
-<button type="button" (click)="showDialog()" pButton label="Chat Grupal" class="ui-button-rounded"></button>
   </div>
 </div>
 <div class="form-group">
@@ -76,7 +90,7 @@
 </p-footer>
 </p-dialog>
   <ul class="list-group"> 
-  <li class="list-group-item" (click)="showDialog2()" *ngFor="let usuario of usuarios | async">
+  <li class="list-group-item list-group-item-action list-group-item-primary" (click)="showDialog2()" *ngFor="let usuario of usuarios | async">
     {{usuario.id}}-{{usuario.Nombre}}  
   </li>
 </ul>

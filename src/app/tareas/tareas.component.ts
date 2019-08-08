@@ -24,6 +24,10 @@ export class TareasComponent implements OnInit {
   showDialog() {
       this.display = true;
   }
+  display2: boolean = false;
+  showDialog2() {
+      this.display2 = true;
+  }
   asignar(){
     this.db.collection("Usuarios").doc(this.user).
    collection("Tareas").doc(this.Id).set({
@@ -34,6 +38,13 @@ export class TareasComponent implements OnInit {
     Asignada: 1,
    });
    this.display = false;
+  }
+  eliminar(){
+    this.db.collection('Tareas').doc(this.Id).update({
+      Asignada: 'No aplica',
+      Estatus: 'Borrada'
+    })
+    this.display2 = false;
   }
 
   ngOnInit() {
