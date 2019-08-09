@@ -31,17 +31,32 @@ export class MapaComponent implements OnInit {
   user: string;
   usuario: SelectItem[];
   Asignada: number;
+  idT: string;
+  
+
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
+  showDialog2(idU: string) {
+    this.display2 = true;
+    this.messagesU = this.db.collection('Chats').doc('mensajes').
+    collection(idU, ref => ref.orderBy('Hora')).valueChanges();
+   this.idT = idU;
+    console.log(this.idT);
+}
+
   usuarios: Observable<any[]>;
   messages: Observable<any[]>;
+  messagesU: Observable<any[]>;
   constructor(public db: AngularFirestore, 
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {
     this.usuarios = db.collection('Usuarios', ref => ref.where('Estatus', '==', 'Activo')).valueChanges();
     this.messages = db.collection('Chats').doc('mensajesGrupal').
     collection('Grupal', ref => ref.orderBy('Hora')).valueChanges();
+    db.collection('Usuarios').get().forEach((x) =>{
+     
+    });
     this.usuario = [
       {label: '169861', value: '169861'},
       {label: '215582', value: '215582'},
@@ -54,22 +69,28 @@ export class MapaComponent implements OnInit {
   showDialog() {
       this.display = true;
   }
-  showDialog2() {
-    this.display2 = true;
-}
 clickedMarker() {
   this.display3 = true;
 }
 enviar(){
   this.db.collection("Chats").doc('mensajesGrupal').collection('Grupal').add({
-    Hora: new Date().getTime(),
+    Hora: new Date(),
     message: this.mensaje,
     name: this.supervisor
     });
     this.mensaje = '';
 }
+enviarU(){
+  this.db.collection("Chats").doc('mensajes').collection(this.idT).add({
+    Hora: new Date(),
+    message: this.mensaje,
+    name: this.supervisor,
+    Para: this.idT,
+    });
+    this.mensaje = '';
+}
 onSubmit(){
-  if (this.user = null){
+  if (this.user == undefined){
     this.Asignada = 0
   }else{
    this.Asignada = 1

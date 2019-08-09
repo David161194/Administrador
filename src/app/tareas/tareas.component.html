@@ -1,22 +1,18 @@
-<div class="float-right">
-  <button type="button" pButton icon="pi pi-times" (click)="showDialog2()" label="Eliminar tareas" class="ui-button-rounded ui-button-danger"></button>
-  <p-dialog header="Asignar tarea" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
-    [maximizable]="true" [baseZIndex]="10000">
-    <div>
-      <div class="col2">
-     Id de tarea: <br>
-     <input type="text" pInputText [(ngModel)]="Id"/>
-      </div>
-    </div>
-    <p-footer>
-        <button type="button" pButton (click)="eliminar()" label="Eliminar" class="ui-button-rounded ui-button-danger"></button>
-        <button type="button" pButton icon="pi pi-times" (click)="display2=false" label="Cancelar" class="ui-button-rounded ui-button-secondary"></button>
-    </p-footer>
-</p-dialog>
+<p-dialog header="Eliminar tarea" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+[maximizable]="true" [baseZIndex]="10000">
+<div>
+  <div class="col2">
+ ¿Deseas borrar esta tarea?
+  </div>
 </div>
+<p-footer>
+    <button type="button" pButton (click)="eliminar()" label="Eliminar" class="ui-button-rounded ui-button-danger"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="display2=false" label="Cancelar" class="ui-button-rounded ui-button-secondary"></button>
+</p-footer>
+</p-dialog>
 <h2>Tareas sin asignar</h2>
 <ul class="list-group"> 
-  <li class="list-group-item" (click)="showDialog()" *ngFor="let tarea of tareas | async">
+  <li class="list-group-item list-group-item-action list-group-item-primary" (click)="showDialog(tarea.id)" *ngFor="let tarea of tareas | async">
    Id: {{tarea.id}} - Digital: {{tarea.Digital}}  
   </li>
 </ul>
@@ -25,10 +21,6 @@
     <div>
       <div class="col1">
     <p-dropdown name="name" [(ngModel)]="user" placeholder="Asignación de tarea"  editable="true"></p-dropdown>
-      </div>
-      <div class="col2">
-     Id: <br>
-     <input type="text" pInputText [(ngModel)]="Id"/>
       </div>
     </div>
     <p-footer>
@@ -39,21 +31,21 @@
 <br>
 <h2>Tareas asignadas</h2>
 <ul class="list-group"> 
-  <li class="list-group-item" *ngFor="let tareas of tareasAsig | async">
+  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasAsig | async" (click)=showDialog2(tareas.id)>
     Id: {{tareas.id}} - Digital: {{tareas.Digital}}  
   </li>
 </ul>
 <br>
 <h2>Tareas terminadas</h2>
 <ul class="list-group"> 
-  <li class="list-group-item" *ngFor="let tareas of tareasTer | async">
+  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasTer | async" (click)=showDialog2(tareas.id)>
     Id: {{tareas.id}} - Digital: {{tareas.Digital}}  
   </li>
 </ul>
 <br>
 <h2>Tareas borradas</h2>
 <ul class="list-group"> 
-  <li class="list-group-item" *ngFor="let tareas of tareasEli | async">
+  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasEli | async" (click)=showDialog2(tareas.id)>
     Id: {{tareas.id}} - Digital: {{tareas.Digital}}  
   </li>
 </ul>

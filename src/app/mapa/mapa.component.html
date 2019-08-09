@@ -39,14 +39,6 @@
 <div class="lista">
   <!--Chat uno a uno-->
     <h3>Verificadores activos</h3>
-    <p-dialog header="Chat" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '450px'}" [minY]="70" 
-    [maximizable]="true" [baseZIndex]="10000">
-<p>Mensajes
-</p>
-    <p-footer>
-        <button type="button" pButton icon="pi pi-times" (click)="display2=false" label="Cerrar" class="ui-button-rounded ui-button-danger"></button>
-    </p-footer>
-</p-dialog>
 <!--Modal creación de tareas-->
 <p-dialog header="Crear tarea" [(visible)]="display3" [modal]="true" [responsive]="true" [style]="{width: '500px'}" [minY]="70" 
 [maximizable]="true" [baseZIndex]="10000">
@@ -90,8 +82,29 @@
 </p-footer>
 </p-dialog>
   <ul class="list-group"> 
-  <li class="list-group-item list-group-item-action list-group-item-primary" (click)="showDialog2()" *ngFor="let usuario of usuarios | async">
+  <li class="list-group-item list-group-item-action list-group-item-primary" (click)="showDialog2(usuario.id)" *ngFor="let usuario of usuarios | async">
     {{usuario.id}}-{{usuario.Nombre}}  
   </li>
+  <p-dialog header="Chat" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '700px', minWidth: '200px'}" [minY]="70" 
+  [maximizable]="true" [baseZIndex]="10000">
+  <ul class="list-group list-group-flush"> 
+    <li class="list-group-item list-group-item-dark" *ngFor="let message of messagesU | async">
+     <font color="#4682B4">{{message.name}} </font> 
+      <br>
+      {{message.message}} 
+    </li>
+  </ul>
+ <div class="lista">
+  <div class="col1">
+   <input type="text" name="mensaje" pInputText autocorrect="on" [(ngModel)]="mensaje" size="45" placeholder="Escribe un mensaje">
+  </div>
+  <div class="col2">
+      <p-button (click)="enviarU()" label="Enviar"></p-button>
+    </div>
+ </div>
+  <p-footer>
+      <button type="button" pButton icon="pi pi-times" (click)="display2=false" label="Cerrar" class="ui-button-rounded ui-button-danger"></button>
+  </p-footer>
+</p-dialog>
 </ul>
 </div>
