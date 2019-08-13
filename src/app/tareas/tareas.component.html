@@ -3,6 +3,38 @@
 <div>
   <div class="col2">
  ¿Deseas borrar esta tarea?
+ <div><br>
+    <div class="col1">
+        <p>ID de tarea</p>
+      <p>{{this.tarea}}</p>
+      </div>
+      <div class="col2">
+          <p>Digital</p>
+        <p>{{this.digital}}</p>
+        </div>
+</div><br>
+<div>
+      <div class="col2">
+          <p>Dirección</p>
+        <p>{{this.direccion}}</p>
+        </div>  
+</div><br>
+<div>
+    <div class="col1">
+        <p>Cliente</p>
+      <p>{{this.cliente}}</p>
+      </div>
+      <div class="col2">
+          <p>Estatus</p>
+        <p>{{this.estatus}}</p>
+        </div>
+</div><br>
+<div>
+    <div class="col2">
+        <p>Telefono</p>
+      <p>{{this.telefono}}</p>
+      </div>  
+</div><br>
   </div>
 </div>
 <p-footer>
@@ -12,16 +44,49 @@
 </p-dialog>
 <h2>Tareas sin asignar</h2>
 <ul class="list-group"> 
-  <li class="list-group-item list-group-item-action list-group-item-primary" (click)="showDialog(tarea.id)" *ngFor="let tarea of tareas | async">
+  <li class="list-group-item list-group-item-action list-group-item-primary" (click)="showDialog(tarea.id, tarea.Cliente, tarea.Digital, tarea.Direccion, tarea.Estatus, tarea.Telefono)" 
+  *ngFor="let tarea of tareas | async">
    Id: {{tarea.id}} - Digital: {{tarea.Digital}}  
   </li>
 </ul>
 <p-dialog header="Asignar tarea" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
     [maximizable]="true" [baseZIndex]="10000">
     <div>
-      <div class="col1">
-    <p-dropdown name="name" [(ngModel)]="user" placeholder="Asignación de tarea"  editable="true"></p-dropdown>
-      </div>
+    <div>
+        <div class="col1">
+            <p>ID de tarea</p>
+          <p>{{this.tarea}}</p>
+          </div>
+          <div class="col2">
+              <p>Digital</p>
+            <p>{{this.digital}}</p>
+            </div>
+    </div><br>
+    <div>
+          <div class="col2">
+              <p>Dirección</p>
+            <p>{{this.direccion}}</p>
+            </div>  
+    </div><br>
+    <div>
+        <div class="col1">
+            <p>Cliente</p>
+          <p>{{this.cliente}}</p>
+          </div>
+          <div class="col2">
+              <p>Estatus</p>
+            <p>{{this.estatus}}</p>
+            </div>
+    </div><br>
+    <div>
+        <div class="col2">
+            <p>Telefono</p>
+          <p>{{this.telefono}}</p>
+          </div>  
+  </div><br>
+    <div class="col2">
+        <p-dropdown name="name" [(ngModel)]="user" placeholder="Asignar de tarea"  editable="true"></p-dropdown><br><br>
+     </div>
     </div>
     <p-footer>
         <button type="button" pButton icon="pi pi-check" (click)="asignar()" label="Asignar" class="ui-button-rounded ui-button-success"></button>
@@ -31,21 +96,21 @@
 <br>
 <h2>Tareas asignadas</h2>
 <ul class="list-group"> 
-  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasAsig | async" (click)=showDialog2(tareas.id)>
+  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasAsig | async" (click)="showDialog2(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Telefono)">
     Id: {{tareas.id}} - Digital: {{tareas.Digital}}  
   </li>
 </ul>
 <br>
 <h2>Tareas terminadas</h2>
 <ul class="list-group"> 
-  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasTer | async" (click)=showDialog2(tareas.id)>
+  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasTer | async" (click)="showDialog2(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Telefono)">
     Id: {{tareas.id}} - Digital: {{tareas.Digital}}  
   </li>
 </ul>
 <br>
 <h2>Tareas borradas</h2>
 <ul class="list-group"> 
-  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasEli | async" (click)=showDialog2(tareas.id)>
+  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasEli | async" (click)="showDialog2(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Telefono)">
     Id: {{tareas.id}} - Digital: {{tareas.Digital}}  
   </li>
 </ul>

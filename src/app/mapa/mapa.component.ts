@@ -82,7 +82,7 @@ enviar(){
 }
 enviarU(){
   this.db.collection("Chats").doc('mensajes').collection(this.idT).add({
-    Hora: new Date(),
+    Hora:new Date(),
     message: this.mensaje,
     name: this.supervisor,
     Para: this.idT,

@@ -15,23 +15,45 @@ export class TareasComponent implements OnInit {
   user: string;
   Id: string;
   tarea: string;
+  cliente: string;
+  digital: string;
+  direccion: string;
+  estatus: string;
+  telefono: string;
+
   constructor(public db: AngularFirestore) { 
     this.tareas = db.collection('Tareas', ref => ref.where('Asignada', '==', 0)).valueChanges();
     this.tareasAsig = db.collection('Tareas', ref => ref.where('Asignada', '==', 1)).valueChanges();
     this.tareasTer = db.collection('Tareas', ref => ref.where('Estatus', '==', 'Terminada')).valueChanges();
     this.tareasEli = db.collection('Tareas', ref => ref.where('Estatus', '==', 'Borrada')).valueChanges();
   }
+
   display: boolean = false;
-  showDialog(tId) {
+  showDialog(tId, c, dig, dir, es, tel) {
       this.display = true;
-      console.log(tId);
-      this.tarea = tId;
+      this.tarea = tId; 
+     this.cliente = c; 
+     this.digital = dig; 
+     this.direccion= dir; 
+     this.estatus = es; 
+     this.telefono = tel; 
   }
+  
   display2: boolean = false;
-  showDialog2(tId) {
+  showDialog2(tId, c, dig, dir, es, tel) {
       this.display2 = true;
-      console.log(tId);
-      this.tarea = tId;
+      this.tarea = tId; 
+     console.log(this.tarea);
+     this.cliente = c; 
+     console.log(this.cliente);
+     this.digital = dig; 
+     console.log(this.digital);
+     this.direccion= dir; 
+     console.log(this.direccion);
+     this.estatus = es; 
+     console.log(this.estatus);
+     this.telefono= tel; 
+     console.log(this.telefono);  
   }
   asignar(){
     this.db.collection("Usuarios").doc(this.user).

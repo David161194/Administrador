@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
 import { TareasComponent } from './tareas/tareas.component';
 import {InputTextModule} from 'primeng/inputtext';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {InputTextModule} from 'primeng/inputtext';
     MapaComponent,
     HomeComponent,
     TareasComponent,
+    UsuariosComponent,
   ],
   imports: [
     DropdownModule,

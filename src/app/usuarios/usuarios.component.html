@@ -1,0 +1,45 @@
+<div class="float-right">
+  <button pButton type="button" icon="pi pi-plus" (click)="showDialog()" class="ui-button-rounded ui-button-success"></button>
+</div>
+<p-dialog header="Crear usuario" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+[maximizable]="true" [baseZIndex]="10000">
+<div>
+    <form (submit)='crear()'>
+        Nombre:<br>
+        <input type="text" name="Nombre"  [(ngModel)]="Nombre" required><br>
+        Telefono:<br>
+        <input type="text" name="Telefono"  [(ngModel)]="Telefono" required><br>
+        Id:<br>
+        <input type="text" name="Id"  [(ngModel)]="Id" required><br><br>
+        <p-dropdown name="name" [options]="usuario" [(ngModel)]="user" placeholder="Tipo"></p-dropdown>
+        <br><br>
+        <input type="submit">
+      </form>
+</div>
+<p-footer>
+    <button type="button" pButton (click)="crear()" label="Crear" class="ui-button-rounded ui-button-success"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="display=false" label="Cancelar" class="ui-button-rounded ui-button-secondary"></button>
+</p-footer>
+</p-dialog>
+<h2>Usuarios</h2>
+<ul class="list-group"> 
+    <li class="list-group-item list-group-item-action list-group-item-primary" (click)="showDialog2(usuario.id, usuario.Nombre, usuario.Telefono)" *ngFor="let usuario of usuarios | async">
+     Id: {{usuario.id}} - Nombre: {{usuario.Nombre}}  
+    </li>
+  </ul>
+  <p-dialog header="{{this.usuarioLista}}" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+[maximizable]="true" [baseZIndex]="10000">
+<div>
+        Nombre:<br>
+        <input type="text" name="Nombre"  [(ngModel)]="Nombre" value="{{this.usuarioNombre}}"><br>
+        Telefono:<br>
+        <input type="text" name="Telefono"  [(ngModel)]="Telefono" value="{{this.usuarioTelefono}}"><br>
+       <br>
+        <p-dropdown name="name" [options]="usuario" [(ngModel)]="user" placeholder="Tipo"></p-dropdown>
+  
+</div>
+<p-footer>
+    <button type="button" pButton icon="pi pi-save" (click)="guardar()" label="Modificar" class="ui-button-rounded"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="eliminar()" label="Eliminar" class="ui-button-rounded ui-button-danger"></button>
+</p-footer>
+</p-dialog>
