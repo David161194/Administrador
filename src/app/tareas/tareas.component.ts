@@ -12,6 +12,7 @@ export class TareasComponent implements OnInit {
   tareasAsig: Observable<any[]>;
   tareasTer: Observable<any[]>;
   tareasEli: Observable<any[]>;
+  check: Observable<any[]>;
   user: string;
   Id: string;
   tarea: string;
@@ -20,7 +21,16 @@ export class TareasComponent implements OnInit {
   direccion: string;
   estatus: string;
   telefono: string;
+  checkNum: string;
 
+  displayCheck: boolean = false;
+  checklist(c){
+    this.displayCheck = true;
+    this.checkNum = c;
+    console.log(this.checkNum);
+    this.check = this.db.collection('Checklist', ref => ref.where('ID_Tarea', '==', this.checkNum)).valueChanges();
+    this.display2 = false;
+  }
   constructor(public db: AngularFirestore) { 
     this.tareas = db.collection('Tareas', ref => ref.where('Asignada', '==', 0)).valueChanges();
     this.tareasAsig = db.collection('Tareas', ref => ref.where('Asignada', '==', 1)).valueChanges();
@@ -43,17 +53,11 @@ export class TareasComponent implements OnInit {
   showDialog2(tId, c, dig, dir, es, tel) {
       this.display2 = true;
       this.tarea = tId; 
-     console.log(this.tarea);
      this.cliente = c; 
-     console.log(this.cliente);
      this.digital = dig; 
-     console.log(this.digital);
      this.direccion= dir; 
-     console.log(this.direccion);
      this.estatus = es; 
-     console.log(this.estatus);
-     this.telefono= tel; 
-     console.log(this.telefono);  
+     this.telefono= tel;   
   }
   asignar(){
     this.db.collection("Usuarios").doc(this.user).
@@ -68,10 +72,19 @@ export class TareasComponent implements OnInit {
   }
   eliminar(){
     this.db.collection('Tareas').doc(this.tarea).update({
-      Asignada: 'No aplica',
+      Asignada: 0,
       Estatus: 'Borrada'
     })
     this.display2 = false;
+  }
+  guardar(){
+    this.db.collection('Tareas').doc(this.tarea).update({
+      Digital: this.digital,
+      Telefono: this.telefono,
+      Direccion: this.direccion,
+      Cliente: this.cliente,
+      Estatus: this.estatus,
+  });
   }
 
   ngOnInit() {
