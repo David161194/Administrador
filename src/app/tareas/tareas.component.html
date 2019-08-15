@@ -1,4 +1,4 @@
-<p-dialog header="Eliminar tarea" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+<p-dialog header="{{this.tarea}}" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
 [maximizable]="true" [baseZIndex]="10000">
 <div>
   <div class="col2">
@@ -7,27 +7,27 @@
   <div>
     <div class="col1">
         <p>Digital</p>
-        <input type="text" name="Digital"  [(ngModel)]="digital" value="{{this.digital}}"><br>
+        <input type="text"  pInputText name="Digital"  [(ngModel)]="digital" value="{{this.digital}}"><br>
       </div>
       <div class="col2">
         <p>Telefono</p>
-        <input type="text" name="telefono"  [(ngModel)]="telefono" value="{{this.telefono}}"><br>
+        <input type="text"  pInputText name="telefono"  [(ngModel)]="telefono" value="{{this.telefono}}"><br>
       </div>  
 </div><br>
 <div>
     <div class="col2">
         <p>Dirección</p>
-        <input type="text" name="direccion"  [(ngModel)]="direccion" size="50" value="{{this.direccion}}"><br>
+        <input type="text"  pInputText name="direccion"  [(ngModel)]="direccion" size="50" value="{{this.direccion}}"><br>
       </div>  
 </div><br>
 <div>
   <div class="col1">
       <p>Cliente</p>
-      <input type="text" name="cliente"  [(ngModel)]="cliente" value="{{this.cliente}}"><br>
+      <input type="text"  pInputText name="cliente"  [(ngModel)]="cliente" value="{{this.cliente}}"><br>
     </div>
     <div class="col2">
         <p>Estatus</p>
-        <input type="text" name="estatus"  [(ngModel)]="estatus" value="{{this.estatus}}"><br>
+        <input type="text"  pInputText name="estatus"  [(ngModel)]="estatus" value="{{this.estatus}}"><br>
       </div>
 </div><br>
 </div>
@@ -36,6 +36,49 @@
 <p-footer>
     <div class="float-left">
         <button pButton type="button" icon="pi pi-list" label="Checklist" (click)="checklist(this.tarea)" class="ui-button-rounded"></button>
+      </div>
+    <button type="button" pButton (click)="eliminar()" label="Eliminar" class="ui-button-rounded ui-button-danger"></button>
+    <button type="button" pButton icon="pi pi-save" (click)="guardar()" label="Modificar" class="ui-button-rounded"></button>
+</p-footer>
+</p-dialog>
+<p-dialog header="{{this.tarea}}" [(visible)]="display3" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+[maximizable]="true" [baseZIndex]="10000">
+<div>
+  <div class="col2">
+ ¿Deseas borrar o modificar esta tarea?
+ <div><br>
+  <div>
+    <div class="col1">
+        <p>Digital</p>
+        <input type="text"  pInputText name="Digital"  [(ngModel)]="digital" value="{{this.digital}}"><br>
+      </div>
+      <div class="col2">
+        <p>Telefono</p>
+        <input type="text"  pInputText name="telefono"  [(ngModel)]="telefono" value="{{this.telefono}}"><br>
+      </div>  
+</div><br>
+<div>
+    <div class="col2">
+        <p>Dirección</p>
+        <input type="text"  pInputText name="direccion"  [(ngModel)]="direccion" size="50" value="{{this.direccion}}"><br>
+      </div>  
+</div><br>
+<div>
+  <div class="col1">
+      <p>Cliente</p>
+      <input type="text"  pInputText name="cliente"  [(ngModel)]="cliente" value="{{this.cliente}}"><br>
+    </div>
+    <div class="col2">
+        <p>Estatus</p>
+        <input type="text"  pInputText name="estatus"  [(ngModel)]="estatus" value="{{this.estatus}}"><br>
+      </div>
+</div><br>
+</div>
+</div>
+</div>
+<p-footer>
+    <div class="float-left">
+        <button pButton type="button" icon="pi pi-list" label="Checklist" (click)="checklistA(this.tarea)" class="ui-button-rounded"></button>
       </div>
     <button type="button" pButton (click)="eliminar()" label="Eliminar" class="ui-button-rounded ui-button-danger"></button>
     <button type="button" pButton icon="pi pi-save" (click)="guardar()" label="Modificar" class="ui-button-rounded"></button>
@@ -51,33 +94,33 @@
   </div>
   </li>
 </ul>
-<p-dialog header="Asignar tarea" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+<p-dialog header="{{this.tarea}}" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
     [maximizable]="true" [baseZIndex]="10000">
     <div>
     <div>
           <div class="col1">
               <p>Digital</p>
-              <input type="text" name="Digital"  [(ngModel)]="digital" value="{{this.digital}}"><br>
+              <input type="text"  pInputText name="Digital"  [(ngModel)]="digital" value="{{this.digital}}"><br>
             </div>
             <div class="col2">
               <p>Telefono</p>
-              <input type="text" name="telefono"  [(ngModel)]="telefono" value="{{this.telefono}}"><br>
+              <input type="text"  pInputText name="telefono"  [(ngModel)]="telefono" value="{{this.telefono}}"><br>
             </div>  
     </div><br>
     <div>
           <div class="col2">
               <p>Dirección</p>
-              <input type="text" name="direccion"  [(ngModel)]="direccion" size="50" value="{{this.direccion}}"><br>
+              <input type="text"  pInputText name="direccion"  [(ngModel)]="direccion" size="50" value="{{this.direccion}}"><br>
             </div>  
     </div><br>
     <div>
         <div class="col1">
             <p>Cliente</p>
-            <input type="text" name="cliente"  [(ngModel)]="cliente" value="{{this.cliente}}"><br>
+            <input type="text"  pInputText name="cliente"  [(ngModel)]="cliente" value="{{this.cliente}}"><br>
           </div>
           <div class="col2">
               <p>Estatus</p>
-              <input type="text" name="estatus"  [(ngModel)]="estatus" value="{{this.estatus}}"><br>
+              <input type="text"  pInputText name="estatus"  [(ngModel)]="estatus" value="{{this.estatus}}"><br>
             </div>
     </div><br>
     <div class="col2">
@@ -95,7 +138,7 @@
   <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasAsig | async">
     Id: {{tareas.id}} - Digital: {{tareas.Digital}}
     <div class="float-right">
-      <button pButton type="button" icon="pi pi-search" (click)="showDialog2(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Telefono)" class="ui-button-rounded"></button>
+      <button pButton type="button" icon="pi pi-search" (click)="showDialog3(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Telefono)" class="ui-button-rounded"></button>
     </div>  
   </li>
 </ul>
@@ -123,8 +166,16 @@
 [maximizable]="true" [baseZIndex]="10000">
 <div>
     <ul class="list-group"> 
-        <li class="list-group-item list-group-item-action list-group-item" *ngFor="let c of check | async">
+        <li class="list-group-item list-group-item-action list-group-item" *ngFor="let c of check | async; let i = index">
           <div>
+              <div class="text-center">
+                  <font color="#4682B4" size ="5px">Checklist {{i + 1}}</font> 
+              </div>
+              <div>
+                  <div class="col1">
+                      <p>Fecha_Término: {{c.Hora.toDate() | date: 'dd/MM/yyyy - h:mma'}}</p>
+                    </div>
+              </div><br>
               <div class="col1">
                    <p>ID_Tarea: {{c.ID_Tarea}}</p>
                 </div>
@@ -287,5 +338,184 @@
 </div>
 <p-footer>
     <button type="button" pButton icon="pi pi-times" (click)="displayCheck=false" label="Cerrar" class="ui-button-rounded ui-button-secondary"></button>
+</p-footer>
+</p-dialog>
+<p-dialog header="Checklist" [(visible)]="displayCheckA" [modal]="true" [responsive]="true" [style]="{width: '900px'}" [minY]="70" 
+[maximizable]="true" [baseZIndex]="10000">
+<div>
+    <ul class="list-group"> 
+        <li class="list-group-item list-group-item-action list-group-item" *ngFor="let c of check | async; let i = index">
+          <div>
+            <div class="text-center">
+                <font color="#4682B4" size ="5px">Checklist {{i + 1}}</font> 
+            </div>
+            <div>
+                  <div class="col1">
+                      <p>Fecha_Término: {{c.Hora.toDate() | date: 'dd/MM/yyyy - h:mma'}}</p>
+                    </div>
+              </div><br>
+              <div class="col1">
+                   <p>ID_Tarea: {{c.ID_Tarea}}</p>
+                </div>
+                <div class="float-right">
+                    <p>Id_empleado: {{c.id_empleado}}</p>
+                  </div>
+            </div><br>
+            <div>
+                <div class="col1">
+                     <p>Observaciones: {{c.Observaciones}}</p>
+                  </div>
+              </div><br>
+              <div>
+                  <div class="col1">
+                       <p>Cortina_Clientes: {{c.Cortina_Clientes}}</p>
+                    </div>
+                    <div class="float-right">
+                        <p>Entrevista: {{c.Entrevista}}</p>
+                      </div>
+                </div><br>
+                <div>
+                    <div class="col1">
+                         <p>Cortina_Mercancia: {{c.Cortina_Mercancia}}</p>
+                      </div>
+                      <div class="float-right">
+                          <p>Puerta: {{c.Puerta}}</p>
+                        </div>
+                  </div><br>
+                  <div>
+                      <div class="col1">
+                           <p>Chapa: {{c.Chapa}}</p>
+                        </div>
+                        <div class="float-right">
+                            <p>Camara: {{c.Camara}}</p>
+                          </div>
+                    </div><br>
+                    <div>
+                        <div class="col1">
+                             <p>Candado: {{c.Candado}}</p>
+                          </div>
+                          <div class="float-right">
+                              <p>Puerta_cristal: {{c.Puerta_cristal}}</p>
+                            </div>
+                      </div><br>
+                      <div>
+                          <div class="col1">
+                               <p>Muro: {{c.Candado}}</p>
+                            </div>
+                            <div class="float-right">
+                                <p>Fachada_cristal: {{c.Fachada_cristal}}</p>
+                              </div>
+                        </div><br>
+                        <div>
+                            <div class="col1">
+                                 <p>Sirena: {{c.Sirena}}</p>
+                              </div>
+                              <div class="float-right">
+                                  <p>Planta: {{c.Planta}}</p>
+                                </div>
+                          </div><br>
+                          <div>
+                              <div class="col1">
+                                   <p>Ventana: {{c.Ventana}}</p>
+                                </div>
+                                <div class="float-right">
+                                    <p>Porton: {{c.Porton}}</p>
+                                  </div>
+                            </div><br>
+                            <div>
+                                <div class="col1">
+                                     <p>Reja: {{c.Reja}}</p>
+                                  </div>
+                                  <div class="float-right">
+                                      <p>Ruidos: {{c.Ruidos}}</p>
+                                    </div>
+                              </div><br>
+                              <div>
+                                  <div class="col1">
+                                       <p>Luz: {{c.Luz}}</p>
+                                    </div>
+                                    <div class="float-right">
+                                        <p>Perimetro: {{c.Perimetro}}</p>
+                                      </div>
+                                </div><br>
+                                <div>
+                                    <div class="col1">
+                                         <p>Cortina_cliente_observacion: {{c.Cortina_cliente_observacion || 'No existe descripción'}}</p>
+                                      </div>
+                                  </div><br>
+                                  <div>
+                                      <div class="col1">
+                                           <p>Cortina_mercancia_observacion: {{c.Cortina_mercancia_observacion  || 'No existe descripción'}}</p>
+                                        </div>
+                                    </div><br>
+                                    <div>
+                                        <div class="col1">
+                                             <p>Puerta_observacion: {{c.Puerta_observacion  || 'No existe descripción'}}</p>
+                                          </div>
+                                      </div><br>
+                                      <div>
+                                          <div class="col1">
+                                               <p>Chapa_observacion: {{c.Chapa_observacion  || 'No existe descripción'}}</p>
+                                            </div>
+                                        </div><br>
+                                        <div>
+                                            <div class="col1">
+                                                 <p>Candado_observacion: {{c.Candado_observacion  || 'No existe descripción'}}</p>
+                                              </div>
+                                          </div><br>
+                                          <div>
+                                              <div class="col1">
+                                                   <p>Puerta_Cristal_observacion: {{c.Puerta_Cristal_observacion  || 'No existe descripción'}}</p>
+                                                </div>
+                                            </div><br>
+                                            <div>
+                                                <div class="col1">
+                                                     <p>Fachada_Cristal_observacion: {{c.Fachada_Cristal_observacion  || 'No existe descripción'}}</p>
+                                                  </div>
+                                              </div><br>
+                                              <div>
+                                                  <div class="col1">
+                                                       <p>Muro_observacion: {{c.Muro_observacion  || 'No existe descripción'}}</p>
+                                                    </div>
+                                                </div><br>
+                                                <div>
+                                                    <div class="col1">
+                                                         <p>Sirena_observacion: {{c.Sirena_observacion  || 'No existe descripción'}}</p>
+                                                      </div>
+                                                  </div><br>
+                                                  <div>
+                                                      <div class="col1">
+                                                           <p>Planta_observacion: {{c.Planta_observacion  || 'No existe descripción'}}</p>
+                                                        </div>
+                                                    </div><br>
+                                                      <div>
+                                                          <div class="col1">
+                                                               <p>Ventana_observacion: {{c.Ventana_observacion  || 'No existe descripción'}}</p>
+                                                            </div>
+                                                        </div><br>
+                                                        <div>
+                                                            <div class="col1">
+                                                                 <p>Porton_observacion: {{c.Porton_observacion  || 'No existe descripción'}}</p>
+                                                              </div>
+                                                          </div><br>
+                                                          <div>
+                                                              <div class="col1">
+                                                                   <p>Reja_observacion: {{c.Reja_observacion  || 'No existe descripción'}}</p>
+                                                                </div>
+                                                            </div><br>
+          Entrada: <br>
+           <a href="{{c.Entrada}}"> {{c.Entrada || 'No disponible'}}</a>  <br>
+          Fachada: <br>
+          <a href="{{c.Fachada}}"> {{c.Fachada || 'No disponible'}}</a>  <br>
+          Lateral: <br>
+          <a href="{{c.Lateral}}"> {{c.Lateral || 'No disponible'}}</a>  <br>
+          Firma: <br>
+          <a href="{{c.Firma}}"> {{c.Firma || 'No disponible'}}</a>  <br>
+        </li>
+      </ul>
+</div>
+<p-footer>
+    <button type="button" pButton icon="pi pi-check" (click)="aceptar()" label="Aceptar" class="ui-button-rounded ui-button-success"></button>
+    <button type="button" pButton icon="pi pi-times" (click)="rechazar()" label="Rechazar" class="ui-button-rounded ui-button-danger"></button>
 </p-footer>
 </p-dialog>

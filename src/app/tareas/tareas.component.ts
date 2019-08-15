@@ -31,6 +31,14 @@ export class TareasComponent implements OnInit {
     this.check = this.db.collection('Checklist', ref => ref.where('ID_Tarea', '==', this.checkNum)).valueChanges();
     this.display2 = false;
   }
+  displayCheckA: boolean = false;
+  checklistA(c){
+    this.displayCheckA = true;
+    this.checkNum = c;
+    console.log(this.checkNum);
+    this.check = this.db.collection('Checklist', ref => ref.where('ID_Tarea', '==', this.checkNum)).valueChanges();
+    this.display3 = false;
+  }
   constructor(public db: AngularFirestore) { 
     this.tareas = db.collection('Tareas', ref => ref.where('Asignada', '==', 0)).valueChanges();
     this.tareasAsig = db.collection('Tareas', ref => ref.where('Asignada', '==', 1)).valueChanges();
@@ -59,6 +67,17 @@ export class TareasComponent implements OnInit {
      this.estatus = es; 
      this.telefono= tel;   
   }
+     
+  display3: boolean = false;
+  showDialog3(tId, c, dig, dir, es, tel) {
+      this.display3 = true;
+      this.tarea = tId; 
+     this.cliente = c; 
+     this.digital = dig; 
+     this.direccion= dir; 
+     this.estatus = es; 
+     this.telefono= tel;   
+  }   
   asignar(){
     this.db.collection("Usuarios").doc(this.user).
    collection("Tareas").doc(this.tarea).set({
@@ -84,7 +103,21 @@ export class TareasComponent implements OnInit {
       Direccion: this.direccion,
       Cliente: this.cliente,
       Estatus: this.estatus,
+      Asignada: 0,
   });
+  }
+  rechazar(){
+   this.db.collection('Tareas').doc(this.tarea).update({
+      Estatus: 'Rechazada',
+   });
+   this.displayCheckA = false;
+  }
+  aceptar(){
+    this.db.collection('Tareas').doc(this.tarea).update({
+      Estatus: 'Terminada',
+      Asignada: 'No aplica'
+   });
+   this.displayCheckA = false;
   }
 
   ngOnInit() {

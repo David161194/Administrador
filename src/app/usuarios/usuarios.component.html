@@ -6,14 +6,14 @@
 <div>
     <form (submit)='crear()'>
         Nombre:<br>
-        <input type="text" name="Nombre"  [(ngModel)]="Nombre" required><br>
+        <input type="text"  pInputText name="Nombre"  [(ngModel)]="Nombre" required><br>
         Telefono:<br>
-        <input type="text" name="Telefono"  [(ngModel)]="Telefono" required><br>
+        <input type="text"  pInputText name="Telefono"  [(ngModel)]="Telefono" required><br>
         Id:<br>
-        <input type="text" name="Id"  [(ngModel)]="Id" required><br><br>
+        <input type="text"  pInputText name="Id"  [(ngModel)]="Id" required><br><br>
         <p-dropdown name="name" [options]="usuario" [(ngModel)]="user" placeholder="Tipo"></p-dropdown>
         <br><br>
-        <input type="submit">
+        <input type="submit" pInputText>
       </form>
 </div>
 <p-footer>
@@ -31,9 +31,9 @@
 [maximizable]="true" [baseZIndex]="10000">
 <div>
         Nombre:<br>
-        <input type="text" name="Nombre"  [(ngModel)]="Nombre" value="{{this.usuarioNombre}}"><br>
+        <input type="text"  pInputText name="Nombre"  [(ngModel)]="Nombre" value="{{this.usuarioNombre}}"><br>
         Telefono:<br>
-        <input type="text" name="Telefono"  [(ngModel)]="Telefono" value="{{this.usuarioTelefono}}"><br>
+        <input type="text"  pInputText name="Telefono"  [(ngModel)]="Telefono" value="{{this.usuarioTelefono}}"><br>
        <br>
         <p-dropdown name="name" [options]="usuario" [(ngModel)]="user" placeholder="Tipo"></p-dropdown>
   
