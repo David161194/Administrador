@@ -29,7 +29,7 @@ export class MapaComponent implements OnInit {
   supervisor: string ='Supervisor';
   private geoCoder;
   user: string;
-  usuario: SelectItem[];
+  usuario: any [];
   Asignada: number;
   idT: string;
   
@@ -54,14 +54,16 @@ export class MapaComponent implements OnInit {
     this.usuarios = db.collection('Usuarios', ref => ref.where('Estatus', '==', 'Activo')).valueChanges();
     this.messages = db.collection('Chats').doc('mensajesGrupal').
     collection('Grupal', ref => ref.orderBy('Hora')).valueChanges();
-    db.collection('Usuarios').get().forEach((x) =>{
-     
+    db.collection('Usuarios', ref => ref.where('Estatus', '==', 'Activo')).valueChanges().subscribe(res => {
+        console.log(res);
     });
-    this.usuario = [
+     
+    
+   this.usuario = [
       {label: '169861', value: '169861'},
       {label: '215582', value: '215582'},
       {label: '554844', value: '554844'},
-  ];
+    ];
   }
   display: boolean = false;
   display2: boolean = false;

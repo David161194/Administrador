@@ -18,6 +18,11 @@ import {DropdownModule} from 'primeng/dropdown';
 import { TareasComponent } from './tareas/tareas.component';
 import {InputTextModule} from 'primeng/inputtext';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { MessagingService } from './shared/messaging.service';
+import { AsyncPipe } from '../../node_modules/@angular/common';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -35,6 +40,9 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     InputTextModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDJ9gZbV8sbsiG-IrXvjuL-LLtzIgchp7A',
       libraries: ['places']
@@ -45,7 +53,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     DialogModule,
     ButtonModule
   ],
-  providers: [],
+  providers: [MessagingService, AsyncPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
