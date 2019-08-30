@@ -12,6 +12,7 @@
        <font color="#4682B4">{{message.name}} </font> 
         <br>
         {{message.message}} 
+        <a href="{{message.link}}">{{message.link}}</a> 
       </li>
     </ul>
    <div class="lista">
@@ -34,7 +35,7 @@
 </div>
 <agm-map [latitude]="latitude" [zoom]="zoom" [longitude]="longitude">
   <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-  (dragEnd)="markerDragEnd($event)" (markerClick)="clickedMarker() "></agm-marker>
+  (dragEnd)="markerDragEnd($event)" (markerClick)="clickedMarker()"></agm-marker>
 </agm-map>
 <div class="lista">
   <!--Chat uno a uno-->
@@ -60,20 +61,15 @@
   </div>
   <div>
       <div class=col1>
-          <form (submit)='onSubmit()'>
+          <form>
             Cliente:<br>
             <input type="text" name="cliente"  [(ngModel)]="Cliente" required><br>
-            Telefono:<br> 
-            <input type="tel" name="Telefono" pattern="[0-9]{10}"  [(ngModel)]="Telefono" required> <span> Formato: 5611247753</span> <br>
             Digital:<br>
             <input type="text" name="Digital"  [(ngModel)]="Digital" required><br>
-            Estatus:<br>
-            <input type="text" name="Estatus" [(ngModel)]="Estatus" required><br>
-            Id:<br>
-            <input type="text" name="Id"  [(ngModel)]="Id" required><br><br>
+          <br>
             <p-dropdown name="name" [options]="usuario" [(ngModel)]="user" placeholder="Asignar"  editable="true"></p-dropdown>
             <br><br>
-            <input type="submit" pInputText>
+            <input type="button" value="Crear" (click)="onSubmit()" pInputText>
           </form>
         </div>
   </div>      
@@ -82,8 +78,14 @@
 </p-footer>
 </p-dialog>
   <ul class="list-group"> 
-  <li class="list-group-item list-group-item-action list-group-item-primary" (click)="showDialog2(usuario.id)" *ngFor="let usuario of usuarios | async">
-    {{usuario.id}}-{{usuario.Nombre}}  
+  <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let usuario of usuarios | async">
+    {{usuario.id}}-{{usuario.Nombre}} 
+    <div class="float-right">
+      <i class="pi pi-comment" (click)="showDialog2(usuario.id)"></i>
+    </div> 
+      <div class="float-right">
+      <i class='fas fa-car' style="margin-right:0.5em; color: green"></i>
+    </div> 
   </li>
   <p-dialog header="Chat" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '700px', minWidth: '200px'}" [minY]="70" 
   [maximizable]="true" [baseZIndex]="10000">
@@ -91,7 +93,8 @@
     <li class="list-group-item list-group-item-dark" *ngFor="let message of messagesU | async">
      <font color="#4682B4">{{message.name}} </font> 
       <br>
-      {{message.message}} 
+      {{message.message}}
+      <a href="{{message.link}}">{{message.link}}</a>
     </li>
   </ul>
  <div class="lista">
@@ -107,4 +110,12 @@
   </p-footer>
 </p-dialog>
 </ul>
+</div>
+<div class="lista">
+   <h3>Vehículos disponibles</h3>
+    <ul class="list-group"> 
+        <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let car of flota | async">
+          {{car.Tipo}} - {{car.Economico}}
+        </li>
+      </ul>
 </div>

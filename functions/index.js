@@ -64,3 +64,30 @@ exports.notifyTask = functions.firestore
     }
 });
 });
+exports.supervisorWeb = functions.firestore
+.document('Chats/mensajes/{eID}/{menId}')
+.onCreate((snap, context) => {
+    msgData = snap.data();
+    admin.firestore().collection('adminTok').where('id', '==', msgData.Para).get().then((snap) => {
+        var tokens = [];
+        if (snap.empty) {
+            console.log('No Device');
+        } else {
+            for (var token of snap.docs) {
+                tokens.push(token.data().devtoken);
+            }
+            const payload = {
+                notification: {
+                  title: msgData.name,
+                  body: msgData.message,
+                  icon: "https://firebasestorage.googleapis.com/v0/b/camsa-vpro.appspot.com/o/Periodico%20Mural%2Favatar1.jpeg?alt=media&token=d6e05c7b-77bb-465d-97e5-0a3099f7b609"
+                }
+              };
+            return admin.messaging().sendToDevice(tokens, payload).then((response) => {
+                console.log('Pushed them all');
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+    });
+});

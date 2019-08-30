@@ -1,4 +1,4 @@
-<p-dialog header="{{this.tarea}}" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+<p-dialog header="{{this.digital}}" [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
 [maximizable]="true" [baseZIndex]="10000">
 <div>
   <div class="col2">
@@ -9,10 +9,6 @@
         <p>Digital</p>
         <input type="text"  pInputText name="Digital"  [(ngModel)]="digital" value="{{this.digital}}"><br>
       </div>
-      <div class="col2">
-        <p>Telefono</p>
-        <input type="text"  pInputText name="telefono"  [(ngModel)]="telefono" value="{{this.telefono}}"><br>
-      </div>  
 </div><br>
 <div>
     <div class="col2">
@@ -37,11 +33,11 @@
     <div class="float-left">
         <button pButton type="button" icon="pi pi-list" label="Checklist" (click)="checklist(this.tarea)" class="ui-button-rounded"></button>
       </div>
-    <button type="button" pButton (click)="eliminar()" label="Eliminar" class="ui-button-rounded ui-button-danger"></button>
+    <button type="button" pButton (click)="eliminar()" label="Cancelar" class="ui-button-rounded ui-button-danger"></button>
     <button type="button" pButton icon="pi pi-save" (click)="guardar()" label="Modificar" class="ui-button-rounded"></button>
 </p-footer>
 </p-dialog>
-<p-dialog header="{{this.tarea}}" [(visible)]="display3" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+<p-dialog header="{{this.digital}}" [(visible)]="display3" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
 [maximizable]="true" [baseZIndex]="10000">
 <div>
   <div class="col2">
@@ -52,10 +48,6 @@
         <p>Digital</p>
         <input type="text"  pInputText name="Digital"  [(ngModel)]="digital" value="{{this.digital}}"><br>
       </div>
-      <div class="col2">
-        <p>Telefono</p>
-        <input type="text"  pInputText name="telefono"  [(ngModel)]="telefono" value="{{this.telefono}}"><br>
-      </div>  
 </div><br>
 <div>
     <div class="col2">
@@ -80,32 +72,29 @@
     <div class="float-left">
         <button pButton type="button" icon="pi pi-list" label="Checklist" (click)="checklistA(this.tarea)" class="ui-button-rounded"></button>
       </div>
-    <button type="button" pButton (click)="eliminar()" label="Eliminar" class="ui-button-rounded ui-button-danger"></button>
+    <button type="button" pButton (click)="eliminar()" label="Cancelar" class="ui-button-rounded ui-button-danger"></button>
     <button type="button" pButton icon="pi pi-save" (click)="guardar()" label="Modificar" class="ui-button-rounded"></button>
 </p-footer>
 </p-dialog>
+<input class="form-control" id="myInput" type="text" placeholder="Buscar tareas..."> <br>
 <h2>Tareas sin asignar</h2>
-<ul class="list-group"> 
+<ul class="list-group" id="myList"> 
   <li class="list-group-item list-group-item-action list-group-item-primary"  
   *ngFor="let tarea of tareas | async">
-   Id: {{tarea.id}} - Digital: {{tarea.Digital}}  
+   Digital: {{tarea.Digital}}  
    <div class="float-right">
-    <button pButton type="button" icon="pi pi-search" (click)="showDialog(tarea.id, tarea.Cliente, tarea.Digital, tarea.Direccion, tarea.Estatus, tarea.Telefono)" class="ui-button-rounded"></button>
+    <i class="pi pi-search" (click)="showDialog(tarea.id, tarea.Cliente, tarea.Digital, tarea.Direccion, tarea.Estatus)"></i>
   </div>
   </li>
 </ul>
-<p-dialog header="{{this.tarea}}" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+<p-dialog header="{{this.digital}}" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
     [maximizable]="true" [baseZIndex]="10000">
     <div>
     <div>
           <div class="col1">
               <p>Digital</p>
               <input type="text"  pInputText name="Digital"  [(ngModel)]="digital" value="{{this.digital}}"><br>
-            </div>
-            <div class="col2">
-              <p>Telefono</p>
-              <input type="text"  pInputText name="telefono"  [(ngModel)]="telefono" value="{{this.telefono}}"><br>
-            </div>  
+            </div> 
     </div><br>
     <div>
           <div class="col2">
@@ -134,31 +123,31 @@
 </p-dialog>
 <br>
 <h2>Tareas asignadas</h2>
-<ul class="list-group"> 
+<ul class="list-group" id="myList"> 
   <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasAsig | async">
-    Id: {{tareas.id}} - Digital: {{tareas.Digital}}
+    Digital: {{tareas.Digital}}
     <div class="float-right">
-      <button pButton type="button" icon="pi pi-search" (click)="showDialog3(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Telefono)" class="ui-button-rounded"></button>
+      <i class="pi pi-search" (click)="showDialog3(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Operador)"></i>
     </div>  
   </li>
 </ul>
 <br>
 <h2>Tareas terminadas</h2>
-<ul class="list-group"> 
+<ul class="list-group" id="myList"> 
   <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasTer | async">
-    Id: {{tareas.id}} - Digital: {{tareas.Digital}} 
+    Digital: {{tareas.Digital}} 
     <div class="float-right">
-      <button pButton type="button" icon="pi pi-search" (click)="showDialog2(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Telefono)" class="ui-button-rounded"></button>
+      <i class="pi pi-search" (click)="showDialog2(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Operador)"></i>
     </div> 
   </li>
 </ul>
 <br>
-<h2>Tareas borradas</h2>
-<ul class="list-group"> 
+<h2>Tareas Canceladas</h2>
+<ul class="list-group" id="myList"> 
   <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let tareas of tareasEli | async">
-    Id: {{tareas.id}} - Digital: {{tareas.Digital}}  
+   Digital: {{tareas.Digital}}  
     <div class="float-right">
-      <button pButton type="button" icon="pi pi-search" (click)="showDialog2(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Telefono)" class="ui-button-rounded"></button>
+      <i class="pi pi-search" (click)="showDialog2(tareas.id, tareas.Cliente, tareas.Digital, tareas.Direccion, tareas.Estatus, tareas.Operador)"></i>
     </div>
   </li>
 </ul>

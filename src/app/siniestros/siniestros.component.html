@@ -1,0 +1,23 @@
+<h2>Siniestros</h2>
+<ul class="list-group"> 
+    <li class="list-group-item list-group-item-action list-group-item-primary" 
+    (click)="showDialog(siniestro.Numero, siniestro.Siniestro, siniestro.Punto, siniestro.Comentario, siniestro.Hora_Siniestro, siniestro.Fotografias)" *ngFor="let siniestro of siniestros | async">
+     Id: {{siniestro.Numero}} - Siniestro: {{siniestro.Siniestro}}  
+    </li>
+  </ul>
+  <p-dialog header="{{this.numero}}" [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+  [maximizable]="true" [baseZIndex]="10000">
+  <div>  
+          <p>ID de empleado: {{this.numero}}<p> <br>
+            <p>Siniestro: {{this.siniestro}}<p> <br>
+              <p>Punto: {{this.punto}}<p> <br>
+                <p>Comentario: {{this.comentario}}<p> <br>
+                  <p>Hora_Siniestro: {{this.hora.toDate() | date: 'dd/MM/yyyy - h:mma' || 'No disponible'}}<p> <br>
+                    <p>Fotografías:</p>
+                    <a href="{{this.fotografias[0]}}"> {{this.fotografias[0] || 'No disponible'}}</a>  <br>
+                    <a href="{{this.fotografias[1]}}"> {{this.fotografias[1] || 'No disponible'}}</a>  <br>
+  </div>
+  <p-footer>
+      <button type="button" pButton icon="pi pi-times" (click)="display=false" label="Cerrar" class="ui-button-rounded ui-button-secondary"></button>
+  </p-footer>
+  </p-dialog>

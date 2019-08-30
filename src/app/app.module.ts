@@ -23,6 +23,7 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { SiniestrosComponent } from './siniestros/siniestros.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
     HomeComponent,
     TareasComponent,
     UsuariosComponent,
+    SiniestrosComponent,
   ],
   imports: [
     DropdownModule,

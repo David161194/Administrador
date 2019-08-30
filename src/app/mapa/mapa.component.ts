@@ -32,6 +32,7 @@ export class MapaComponent implements OnInit {
   usuario: any [];
   Asignada: number;
   idT: string;
+  docID: string;
   
 
   @ViewChild('search')
@@ -48,6 +49,7 @@ export class MapaComponent implements OnInit {
   usuarios: Observable<any[]>;
   messages: Observable<any[]>;
   messagesU: Observable<any[]>;
+  flota: Observable<any[]>;
   constructor(public db: AngularFirestore, 
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone) {
@@ -57,13 +59,12 @@ export class MapaComponent implements OnInit {
     db.collection('Usuarios', ref => ref.where('Estatus', '==', 'Activo')).valueChanges().subscribe(res => {
         console.log(res);
     });
-     
-    
    this.usuario = [
       {label: '169861', value: '169861'},
       {label: '215582', value: '215582'},
       {label: '554844', value: '554844'},
     ];
+    this.flota = db.collection('Flota', ref => ref.where('Estatus', '==', 'No_Asignado')).valueChanges();
   }
   display: boolean = false;
   display2: boolean = false;
@@ -97,22 +98,28 @@ onSubmit(){
   }else{
    this.Asignada = 1
   }
-  this.db.collection("Tareas").doc(this.Id).set({
-   Direccion: this.address,
-   Estatus: this.Estatus,
-   Punto: new firestore.GeoPoint(this.latitude, this.longitude),
-   Digital: this.Digital,
-   Telefono: this.Telefono,
-   Cliente: this.Cliente,
-   id: this.Id,
-   Asignada: this.Asignada
-   });
+  this.db.collection("Tareas").add({
+    }).then(ref => {
+     this.docID = ref.id;
+     ref.set({
+    id: ref.id,
+    Direccion: this.address,
+    Estatus: 'Pendiente',
+    Punto: new firestore.GeoPoint(this.latitude, this.longitude),
+    Digital: this.Digital,
+    Cliente: this.Cliente,
+    Asignada: this.Asignada,
+      })
+    });
+    this.display3 = false;
    this.db.collection("Usuarios").doc(this.user).
-   collection("Tareas").doc(this.Id).set({
+   collection("Tareas").doc(this.docID).set({
    Fecha_Asignación: new Date().getTime(),
    id: this.user,
    });
-   this.display3 = false;
+   this.db.collection('Tareas').doc(this.user).update({
+    Operador: this.user,
+   });
 }
   ngOnInit() {
      //load Places Autocomplete

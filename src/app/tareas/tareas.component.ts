@@ -20,8 +20,8 @@ export class TareasComponent implements OnInit {
   digital: string;
   direccion: string;
   estatus: string;
-  telefono: string;
   checkNum: string;
+  operador: string;
 
   displayCheck: boolean = false;
   checklist(c){
@@ -47,36 +47,35 @@ export class TareasComponent implements OnInit {
   }
 
   display: boolean = false;
-  showDialog(tId, c, dig, dir, es, tel) {
+  showDialog(tId, c, dig, dir, es) {
       this.display = true;
       this.tarea = tId; 
      this.cliente = c; 
      this.digital = dig; 
      this.direccion= dir; 
      this.estatus = es; 
-     this.telefono = tel; 
   }
   
   display2: boolean = false;
-  showDialog2(tId, c, dig, dir, es, tel) {
+  showDialog2(tId, c, dig, dir, es, op) {
       this.display2 = true;
       this.tarea = tId; 
      this.cliente = c; 
      this.digital = dig; 
      this.direccion= dir; 
      this.estatus = es; 
-     this.telefono= tel;   
+     this.operador = op;
   }
      
   display3: boolean = false;
-  showDialog3(tId, c, dig, dir, es, tel) {
+  showDialog3(tId, c, dig, dir, es, op) {
       this.display3 = true;
       this.tarea = tId; 
      this.cliente = c; 
      this.digital = dig; 
      this.direccion= dir; 
      this.estatus = es; 
-     this.telefono= tel;   
+     this.operador = op;
   }   
   asignar(){
     this.db.collection("Usuarios").doc(this.user).
@@ -86,20 +85,21 @@ export class TareasComponent implements OnInit {
    });
    this.db.collection('Tareas').doc(this.tarea).update({
     Asignada: 1,
+    Operador: this.user,
    });
    this.display = false;
   }
   eliminar(){
     this.db.collection('Tareas').doc(this.tarea).update({
-      Asignada: 0,
+      Asignada: 'N/A',
       Estatus: 'Borrada'
     })
+    this.db.collection('Usuarios').doc(this.operador).collection('Tareas').doc(this.tarea).delete();
     this.display2 = false;
   }
   guardar(){
     this.db.collection('Tareas').doc(this.tarea).update({
       Digital: this.digital,
-      Telefono: this.telefono,
       Direccion: this.direccion,
       Cliente: this.cliente,
       Estatus: this.estatus,
