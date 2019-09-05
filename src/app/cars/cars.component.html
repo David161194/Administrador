@@ -1,0 +1,42 @@
+    
+    <p-dialog 
+    header="{{this.numero}}" [(visible)]="displayS" [modal]="true" [responsive]="true" [style]="{width: '550px'}" [minY]="70" 
+    [maximizable]="true" [baseZIndex]="10000">
+    <div>  
+            <p>ID de empleado: {{this.numero}}<p> <br>
+              <p>Siniestro: {{this.siniestro}}<p> <br>
+                <p>Punto: {{this.punto}}<p> <br>
+                  <p>Comentario: {{this.comentario}}<p> <br>
+                
+                     <p>Hora_Siniestro: {{this.hora.toDate() | date: 'dd/MM/yyyy - h:mma' || 'No disponible'}}<p> <br>
+                      <p>Fotografías:</p>
+                      <a href="{{this.fotografias[0]}}"> {{this.fotografias[0] || 'No disponible'}}</a>  <br>
+                      <a href="{{this.fotografias[1]}}"> {{this.fotografias[1] || 'No disponible'}}</a>  <br>  
+    </div>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-times" (click)="displayS=false" label="Cerrar" class="ui-button-rounded ui-button-secondary"></button>
+    </p-footer>
+    </p-dialog>
+    <div class="row">
+           <div class="col">
+         <h3>Vehículos disponibles</h3>
+         <ul class="list-group"> 
+             <li class="list-group-item list-group-item-action list-group-item-primary" *ngFor="let car of flota | async">
+               {{car.Tipo}} - {{car.Economico}}
+             </li>
+           </ul>
+           </div>
+           <div class="col">
+        <h3>Siniestros de Vehículos</h3>
+        <ul class="list-group"> 
+          <li class="list-group-item list-group-item-action list-group-item-primary" 
+          (click)="showDialogS(siniestro.Numero, siniestro.Siniestro, siniestro.Punto, siniestro.Comentario, siniestro.Hora_Siniestro, siniestro.Fotografias)" *ngFor="let siniestro of siniestros | async">
+           Id: {{siniestro.Numero}} - Siniestro: {{siniestro.Siniestro}}  
+          </li>
+        </ul>
+           </div>
+      </div>
+      
+       
+     
+

@@ -15,7 +15,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import {DropdownModule} from 'primeng/dropdown';
-import { TareasComponent } from './tareas/tareas.component';
 import {InputTextModule} from 'primeng/inputtext';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { MessagingService } from './shared/messaging.service';
@@ -23,7 +22,8 @@ import { AsyncPipe } from '../../node_modules/@angular/common';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { SiniestrosComponent } from './siniestros/siniestros.component';
+import { CarsComponent } from './cars/cars.component';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -31,11 +31,11 @@ import { SiniestrosComponent } from './siniestros/siniestros.component';
     NavComponent,
     MapaComponent,
     HomeComponent,
-    TareasComponent,
     UsuariosComponent,
-    SiniestrosComponent,
+    CarsComponent,
   ],
   imports: [
+    CalendarModule,
     DropdownModule,
     BrowserModule,
     FormsModule,

@@ -1,6 +1,6 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 agm-map {
-    height: 400px;
+    height: 350px;
    }
    .mom {
     width: 100%; 
@@ -30,4 +30,13 @@ agm-map {
 }
 .es{
     margin-right: 5px;
+}
+.row{
+    margin-top: 10px;
+}
+.list-group{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow-y:auto;
+    -webkit-overflow-scrolling: touch;
 }
